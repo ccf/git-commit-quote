@@ -41,6 +41,4 @@ $
 
 ```
 
-## Disclaimer:
-
-I wrote this as a joke more than anything. Enjoy it, if you find it useful.
+Enjoy.
