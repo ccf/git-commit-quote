@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -o nounset
+
+declare -r SCRIPT_PATH=$( cd $(dirname ${BASH_SOURCE[0]}) > /dev/null; cd ..; pwd -P )
+declare -r QUOTES=$SCRIPT_PATH/share/git/git-commit-quote/quotes
+declare -r COMMIT_MSG=$(sort -R ${QUOTES} | head -n 1)
+
+function usage() {
+  cat <<EOF
+Usage: $0 [-a] [<file>...]
+
+EOF
+}
+
+function main() {
+
+  local -r OPTS=':ha'
+
+  if [ $# -ne 1 ]; then
+    usage
+    exit 1
+  fi
+
+  while builtin getopts ${OPTS} opt "${@}"; do
+
+    case $opt in
+	  h) usage; exit 0
+	     ;;
+
+	  a)
+	    pwd;
+	    eval git commit ${1} -m \"${COMMIT_MSG}\"; exit 0
+	    ;;
+
+	  \?)
+	    echo 'Invalid option' >&2;
+	    usage; exit 1
+	    ;;
+
+    esac
+  done
+
+  git commit -m \"${COMMIT_MSG}\" ${1}
+
+  exit 0
+}
+
+main "$@"
