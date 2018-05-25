@@ -29,7 +29,6 @@ function main() {
 	     ;;
 
 	  a)
-	    pwd;
 	    eval git commit ${1} -m \"${COMMIT_MSG}\"; exit 0
 	    ;;
 
@@ -41,8 +40,7 @@ function main() {
     esac
   done
 
-  git commit -m \"${COMMIT_MSG}\" ${1}
-
+  eval git commit -m \"${COMMIT_MSG}\" ${1}
   exit 0
 }
 
