@@ -5,7 +5,7 @@
 ## Install
 
 ```bash
-$ git clone https://github.com/jayphelps/git-blame-someone-else.git
+$ git clone https://github.com/ccf/git-commit-quote.git
 $ cd git-commit-quote
 $ sudo make install
 ```
